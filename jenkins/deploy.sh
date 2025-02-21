@@ -43,6 +43,28 @@ cp -r -f ./$DEPLOY_NAME/release/frontend/Dockerfile $currentDir/$FRONTEND_IMAGE_
 cp -r -f ./$DEPLOY_NAME/release/backend/* $currentDir
 
 echo
+echo "REMOTE SERVER STOP...."
+echo 
+echo $separationPhrase
+
+ssh lgcns@172.21.1.22 /bin/bash <<'EOT'
+cd /home/lgcns/docker
+echo "currentDir => $(pwd -P)"
+
+#도커 컴포즈 종료
+docker compose down
+
+#도커 이미지 제거
+docker image rmi newspace-backend:latest
+docker image rmi newspace-frontend:latest
+docker image prune -f
+echo
+docker images -a
+EOT
+
+echo
+echo $separationPhrase
+echo
 echo "FRONTEND BUILD Start...."
 echo 
 echo $separationPhrase
@@ -84,13 +106,15 @@ echo "DOCKER_PASS = $DOCKER_PASS"
 echo
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
+#허브 이미지 생성
 docker tag "$BACKEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
 docker tag "$FRONTEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
 
+#허브 이미지 푸시
 docker push "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
 docker push "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
 
-#이미지 제거
+#허브 이미지 제거
 docker image rmi $DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG
 docker image rmi $DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG
 docker image prune -f
@@ -146,14 +170,6 @@ echo "Remote Server Environment: $( uname -a )"
 echo "login user => $( whoami )"
 cd /home/lgcns/docker
 echo "currentDir => $(pwd -P)"
-
-#도커 컴포즈 종료
-docker compose down
-
-#도커 이미지 제거
-docker image rmi newspace-backend:latest
-docker image rmi newspace-frontend:latest
-docker image prune -f
 
 #도커 이미지 로드
 docker load -i newspace-backend.tar
