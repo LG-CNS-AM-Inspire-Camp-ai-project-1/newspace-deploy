@@ -15,7 +15,7 @@ if [ "$#" -eq 3 ]; then
     MOUNT_TARGET_IP=$3
 
     docker exec -it jenkins /bin/bash -c "\
-    ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N '' && \
-    sshpass -p '${MOUNT_TARGET_PW}' ssh-copy-id -i /root/.ssh/id_rsa '${MOUNT_TARGET_USER}@${MOUNT_TARGET_IP}'"
-    
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N '' && \
+    sshpass -p '${MOUNT_TARGET_PW}' ssh-copy-id -i ~/.ssh/id_rsa '${MOUNT_TARGET_USER}@${MOUNT_TARGET_IP}'"
+
 fi
