@@ -1,7 +1,7 @@
 #!/bin/sh
 
-git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-frontend
-git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-deploy
+# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-frontend
+# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-deploy
 
 currentDir=$(pwd -P);
 remoteID="lgcns"
@@ -91,13 +91,11 @@ docker push "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
 docker push "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
 
 #이미지 제거
-docker image rmi $FRONTEND_IMAGE_NAME:$TAG
-docker image rmi $BACKEND_IMAGE_NAME:$TAG
 docker image rmi $DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG
 docker image rmi $DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG
+docker image prune -f
 
 #마운트 시작
-
 echo $separationPhrase
 echo
 echo "Remote Server Mount...."
@@ -149,13 +147,19 @@ echo "login user => $( whoami )"
 cd /home/lgcns/docker
 echo "currentDir => $(pwd -P)"
 
+#도커 컴포즈 종료
+docker compose down
+
+#도커 이미지 제거
 docker image rmi newspace-backend:latest
 docker image rmi newspace-frontend:latest
+docker image prune -f
 
+#도커 이미지 로드
 docker load -i newspace-backend.tar
 docker load -i newspace-frontend.tar
 
-docker compose down
+#도커 컴포즈 시작
 docker compose up -d
 EOT
 
