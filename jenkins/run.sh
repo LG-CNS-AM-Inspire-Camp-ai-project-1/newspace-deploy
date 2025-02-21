@@ -19,3 +19,8 @@ if [ "$#" -eq 3 ]; then
     sshpass -p '${MOUNT_TARGET_PW}' ssh-copy-id -i ~/.ssh/id_rsa '${MOUNT_TARGET_USER}@${MOUNT_TARGET_IP}'"
 
 fi
+
+# docker exec -it jenkins /bin/bash
+# ssh-keygen -t rsa -b 4096
+# ssh-copy-id lgcns@172.21.1.22
+# exit

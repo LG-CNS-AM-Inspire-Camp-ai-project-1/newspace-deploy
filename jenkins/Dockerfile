@@ -1,6 +1,7 @@
 FROM    jenkins/jenkins:lts
 USER    root
 RUN     apt-get update \
+        && apt-get install -y nodejs npm \
         && apt-get install -y sshfs sshpass \
         && apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common \
         && mkdir -p /etc/apt/keyrings \
