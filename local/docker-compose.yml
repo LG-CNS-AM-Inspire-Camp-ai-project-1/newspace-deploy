@@ -1,0 +1,56 @@
+# <주의> 이 파일은 다음 환경변수들의 값을 확인해야 합니다.
+# database => MARIADB_ROOT_PASSWORD
+# backend => OPENAI_API_KEY, SECRET_TOKEN, DB_PASSWORD
+services:
+  database:
+    image: mariadb:latest
+    restart: always
+    ports:
+    - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: my_cool_secret
+      MARIADB_DATABASE: springbootdb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - my-network
+  backend:
+    depends_on:
+      database:
+        condition: service_healthy
+    image: kudong/newspace-backend:latest
+    ports:
+      - 8080:8080
+    environment:
+      OPENAI_API_KEY: your-openai-key
+      SECRET_TOKEN: asdfghjk's token secret
+      DB_USERNAME: root
+      DB_PASSWORD: my_cool_secret
+      DB_URL: jdbc:mariadb://database:3306/springbootdb?useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Seoul
+    networks:
+      - my-network
+  frontend:
+    depends_on:
+      database:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    image: kudong/newspace-frontend:latest
+    ports:
+      - 5173:80
+    environment:
+      BACKEND_IP: 127.0.0.1
+      BACKEND_PORT: 8080
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
+volumes:
+  mariadb_data:

@@ -1,0 +1,32 @@
+# <주의> 이 파일은 다음 환경변수들의 값을 확인해야 합니다.
+# backend => OPENAI_API_KEY, SECRET_TOKEN, DB_USERNAME, DB_PASSWORD, DB_URL
+services:
+  backend:
+    image: newspace-backend:latest
+    ports:
+      - 8080:8080
+    environment:
+      OPENAI_API_KEY: your-openai-key
+      SECRET_TOKEN: asdfghjk's token secret
+      DB_USERNAME: root
+      DB_PASSWORD: my_cool_secret
+      DB_URL: jdbc:mariadb://172.21.1.22:3306/springbootdb?useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Seoul
+    networks:
+      - my-network
+      
+  frontend:
+    depends_on:
+      - backend
+    image: newspace-frontend:latest
+    ports:
+      - 5173:80
+    environment:
+      BACKEND_IP: 127.0.0.1
+      BACKEND_PORT: 8080
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
