@@ -71,7 +71,7 @@ echo $separationPhrase
 
 #프론트 도커 파일 빌드
 cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
-docker image build -t $FRONTEND_IMAGE_NAME:$TAG .
+docker image build --no-cache -t $FRONTEND_IMAGE_NAME:$TAG .
 
 #프론트 도커 파일 tar 저장
 
