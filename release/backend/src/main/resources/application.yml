@@ -26,6 +26,13 @@ spring:
     hibernate:
       ddl-auto: update
 
+  servlet:
+    multipart:
+      enabled: 'true'
+      max-request-size: 30MB
+      max-file-size: 10MB
+      location: /uploads
+
   datasource:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:password}
