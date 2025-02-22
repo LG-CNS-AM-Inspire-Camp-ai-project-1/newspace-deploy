@@ -12,7 +12,8 @@ spring:
           temperature: 0.5
 
   token:
-    expiration-time: 86400000
+    access-token-expiration-time: 900000
+    refresh-token-expiration-time: 1209600000
     secret: ${SECRET_TOKEN:token}
 
   jpa:
