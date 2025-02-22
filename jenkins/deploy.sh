@@ -39,7 +39,7 @@ echo $separationPhrase
 mkdir -p $currentDir/images;
 
 #프로젝트 별 설정파일 복사
-cp -r -f ./$DEPLOY_NAME/release/frontend/Dockerfile $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
+cp -r -f ./$DEPLOY_NAME/release/frontend/* $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
 cp -r -f ./$DEPLOY_NAME/release/backend/* $currentDir
 
 echo
