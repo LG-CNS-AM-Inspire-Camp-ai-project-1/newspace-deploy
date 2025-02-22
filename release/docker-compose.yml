@@ -13,7 +13,7 @@ services:
       DB_PASSWORD: my_cool_secret
       DB_URL: jdbc:mariadb://172.21.1.22:3306/springbootdb?useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Seoul
     volumes:
-      - /home/lgcns/uploads:/uploads
+      - /home/lgcns/uploads:/newspace/uploads
     networks:
       - my-network
       
