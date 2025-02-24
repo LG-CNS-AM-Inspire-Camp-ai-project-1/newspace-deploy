@@ -58,6 +58,7 @@ docker compose down
 docker image rmi newspace-backend:latest
 docker image rmi newspace-frontend:latest
 docker image prune -f
+docker builder prune -a
 echo
 docker images -a
 EOT
