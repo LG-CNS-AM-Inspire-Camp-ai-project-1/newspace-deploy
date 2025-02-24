@@ -72,7 +72,7 @@ echo $separationPhrase
 
 #프론트 도커 파일 빌드
 cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
-docker image build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://kudong.kr:55021/ -t $FRONTEND_IMAGE_NAME:$TAG .
+docker buildx build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://kudong.kr:55021/ -t $FRONTEND_IMAGE_NAME:$TAG .
 
 #프론트 도커 파일 tar 저장
 
@@ -88,7 +88,7 @@ echo $separationPhrase
 cd $currentDir
 chmod +x gradlew
 ./gradlew clean build -x test
-docker image build -t $BACKEND_IMAGE_NAME:$TAG .
+docker buildx build -t $BACKEND_IMAGE_NAME:$TAG .
 
 #백엔드 도커 파일 tar 저장
 docker save -o $currentDir/images/$BACKEND_IMAGE_NAME.tar $BACKEND_IMAGE_NAME:$TAG
@@ -110,7 +110,7 @@ echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 #도커 허브에 업로드할 로컬용 이미지 생성
 
 cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
-docker image build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://localhost:8080/ -t "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG" .
+docker buildx build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://localhost:8080/ -t "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG" .
 cd $currentDir
 docker tag "$BACKEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
 
