@@ -71,7 +71,7 @@ echo $separationPhrase
 
 #프론트 도커 파일 빌드
 cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
-docker image build --no-cache -t $FRONTEND_IMAGE_NAME:$TAG .
+docker image build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://kudong.kr:55021/ -t $FRONTEND_IMAGE_NAME:$TAG .
 
 #프론트 도커 파일 tar 저장
 
@@ -106,9 +106,12 @@ echo "DOCKER_PASS = $DOCKER_PASS"
 echo
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-#허브 이미지 생성
+#도커 허브에 업로드할 로컬용 이미지 생성
+
+cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
+docker image build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://localhost:8080/ -t "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG" .
+cd $currentDir
 docker tag "$BACKEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
-docker tag "$FRONTEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
 
 #허브 이미지 푸시
 docker push "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
