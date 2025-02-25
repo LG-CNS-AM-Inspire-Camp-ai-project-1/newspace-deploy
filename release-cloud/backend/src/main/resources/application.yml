@@ -1,0 +1,60 @@
+server:
+  port: ${SPRING_APPLICATION_PORT:8080}
+
+eureka:
+  instance:
+    hostname: newspace-backend
+    preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
+  client:
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
+
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME:newspace-backend}
+
+  # config 서버는 사용하지 않습니다.
+  # profiles:
+  #   active: dev
+  # config:
+  #   import: "optional:configserver:http://localhost:8071"
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:token}
+      base-url: https://api.groq.com/openai
+      chat:
+        options:
+          model: ${OPENAI_MODEL:llama3-70b-8192}
+          temperature: 0.5
+
+  token:
+    access-token-expiration-time: 900000
+    refresh-token-expiration-time: 1209600000
+    secret: ${SECRET_TOKEN:token}
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Asia/Seoul
+        use_sql_comments: 'true'
+        format_sql: 'true'
+        show_sql: 'true'
+    hibernate:
+      ddl-auto: update
+
+  servlet:
+    multipart:
+      enabled: 'true'
+      max-request-size: 30MB
+      max-file-size: 10MB
+      location: /newspace/uploads
+
+  datasource:
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/mydb}
+    driver-class-name: org.mariadb.jdbc.Driver

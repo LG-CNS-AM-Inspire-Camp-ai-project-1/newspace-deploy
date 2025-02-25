@@ -1,0 +1,52 @@
+server:
+  port: ${SPRING_APPLICATION_PORT:8072}
+
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME:newspace-gateway}
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Eureka에서 서비스 목록 자동 탐색
+          lower-case-service-id: true
+      routes:
+        - id: newspace-backend
+          uri: lb://newspace-backend  # Eureka에서 백엔드 서비스 찾기
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1  # /api 경로를 제거하고 전달
+            - name: CircuitBreaker
+              args:
+                  name: newspace-backend
+                  fallbackUri: forward:/fallback  # 백엔드 다운 시 /fallback 응답    
+
+eureka:
+  instance:
+    hostname: newspace-gateway
+    preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,metrics,gateway"
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      backendService:
+        registerHealthIndicator: true
+        failureRateThreshold: 50  # 50% 이상 실패하면 Circuit Breaker 활성화
+        minimumNumberOfCalls: 5    # 최소 5번의 요청이 실패해야 동작
+        slidingWindowSize: 10      # 최근 10개의 요청을 기준으로 상태 판단

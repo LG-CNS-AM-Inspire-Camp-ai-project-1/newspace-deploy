@@ -1,0 +1,17 @@
+server:
+  port: ${SPRING_APPLICATION_PORT:8070}
+
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME:newspace-eureka}
+
+eureka:
+  instance:
+    hostname: newspace-eureka
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
+  server:
+    waitTimeInMsWhenSyncEmpty: 5

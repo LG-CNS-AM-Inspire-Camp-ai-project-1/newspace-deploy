@@ -1,0 +1,63 @@
+services:
+  newspace-eureka:
+    image: newspace-eureka:latest
+    ports:
+      - 8070:8070
+    environment:
+      SPRING_APPLICATION_NAME: newspace-backend
+      SPRING_APPLICATION_PORT: 8070
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://newspace-eureka:8070/eureka/
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+    networks:
+      - my-network
+
+  newspace-gateway:
+    depends_on:
+      eureka-server:
+        condition: service_started
+    image: newspace-gateway:latest
+    ports:
+      - 8072:8072
+    environment:
+      SPRING_APPLICATION_NAME: newspace-gateway
+      SPRING_APPLICATION_PORT: 8072
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://newspace-eureka:8070/eureka/
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+    networks:
+      - my-network
+
+  newspace-backend:
+    image: newspace-backend:latest
+    ports:
+      - 0:8080
+    environment:
+      SPRING_APPLICATION_NAME: newspace-backend
+      SPRING_APPLICATION_PORT: 8080
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://newspace-eureka:8070/eureka/
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+      OPENAI_API_KEY: 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
+      OPENAI_MODEL: deepseek-r1-distill-llama-70b
+      SECRET_TOKEN: Newspace's token secret
+      DB_USERNAME: lgcns
+      DB_PASSWORD: tldpsdptm
+      DB_URL: jdbc:mariadb://172.21.1.22:3306/springbootdb?useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Seoul
+    volumes:
+      - /home/lgcns/uploads:/newspace/uploads
+    networks:
+      - my-network
+
+  newspace-frontend:
+    depends_on:
+      - backend
+    image: newspace-frontend:latest
+    ports:
+      - 5173:80
+    environment:
+      BACKEND_IP: kudong.kr
+      BACKEND_PORT: 55021
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
