@@ -7,7 +7,7 @@ git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/new
 git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-eureka
 git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-gateway
 
-cp -r -f ./newspace-deploy/jenkins/deploy.sh $currentDir
+cp -r -f ./newspace-deploy/jenkins/deploy-cloud.sh $currentDir
 
-chmod +x ./deploy.sh
-./deploy.sh
+chmod +x ./deploy-cloud.sh
+./deploy-cloud.sh
