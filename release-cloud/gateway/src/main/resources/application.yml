@@ -26,12 +26,3 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "health,metrics,gateway"
-  endpoint:
-    health:
-      show-details: always
