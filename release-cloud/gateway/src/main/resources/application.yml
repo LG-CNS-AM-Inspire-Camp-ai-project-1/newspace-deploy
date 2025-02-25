@@ -17,7 +17,6 @@ spring:
           predicates:
             - Path=/api/**
           filters:
-            - StripPrefix=1  # /api 경로를 제거하고 전달
             - name: CircuitBreaker
               args:
                   name: newspace-backend
