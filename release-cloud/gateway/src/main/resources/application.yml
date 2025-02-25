@@ -7,6 +7,26 @@ spring:
 
   cloud:
     gateway:
+      cors-configurations:
+        '[/**]': # 모든 요청에 대해 CORS 적용
+          allowedOrigins:
+            - "http://kudong.kr:55020"
+            - "http://kudong.kr:55021"
+            - "http://kudong.kr:55022"
+            - "http://kudong.kr:55023"
+            - "http://kudong.kr:55025"
+            - "http://localhost:8080"
+            - "http://localhost:8070"
+            - "http://localhost:5173"
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+            - OPTIONS
+          allowedHeaders: "*"
+          allowCredentials: true
       discovery:
         locator:
           enabled: true  # Eureka에서 서비스 목록 자동 탐색
@@ -20,7 +40,7 @@ spring:
             - name: CircuitBreaker
               args:
                   name: newspace-backend
-                  fallbackUri: forward:/fallback  # 백엔드 다운 시 /fallback 응답    
+                  fallbackUri: forward:/fallback  # 백엔드 다운 시 /fallback 응답 
 
 eureka:
   instance:
