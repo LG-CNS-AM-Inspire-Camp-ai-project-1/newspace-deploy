@@ -1,25 +1,9 @@
 server:
   port: ${SPRING_APPLICATION_PORT:8080}
 
-eureka:
-  instance:
-    hostname: newspace-backend
-    preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
-  client:
-    fetchRegistry: 'true'
-    registerWithEureka: 'true'
-    serviceUrl:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
-
 spring:
   application:
     name: ${SPRING_APPLICATION_NAME:newspace-backend}
-
-  # config 서버는 사용하지 않습니다.
-  # profiles:
-  #   active: dev
-  # config:
-  #   import: "optional:configserver:http://localhost:8071"
 
   ai:
     openai:
@@ -58,3 +42,13 @@ spring:
     password: ${DB_PASSWORD:password}
     url: ${DB_URL:jdbc:mysql://localhost:3306/mydb}
     driver-class-name: org.mariadb.jdbc.Driver
+
+eureka:
+  instance:
+    hostname: newspace-backend
+    preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
+  client:
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://newspace-eureka:8070/eureka/}
