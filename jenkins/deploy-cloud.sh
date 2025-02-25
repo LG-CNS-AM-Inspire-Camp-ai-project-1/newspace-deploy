@@ -225,7 +225,7 @@ docker load -i newspace-eureka.tar
 docker load -i newspace-gateway.tar
 
 #도커 컴포즈 시작
-docker compose -f docker-compose-cloud.yml up -d
+docker compose -f docker-compose-cloud.yml up -d --scale newspace-backend=3
 EOT
 
 echo
