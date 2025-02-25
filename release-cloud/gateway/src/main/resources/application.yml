@@ -43,7 +43,7 @@ management:
 resilience4j:
   circuitbreaker:
     instances:
-      backendService:
+      newspace-backend:
         registerHealthIndicator: true
         failureRateThreshold: 50  # 50% 이상 실패하면 Circuit Breaker 활성화
         minimumNumberOfCalls: 5    # 최소 5번의 요청이 실패해야 동작
