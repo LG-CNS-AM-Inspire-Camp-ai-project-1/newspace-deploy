@@ -80,6 +80,8 @@ echo $separationPhrase
 
 #유레카 도커 파일 빌드
 cd $currentDir/$EUREKA_IMAGE_NAME
+chmod +x gradlew
+./gradlew clean build -x test
 docker buildx build --no-cache -t $EUREKA_IMAGE_NAME:$TAG .
 
 #유레카 도커 파일 tar 저장
@@ -93,6 +95,8 @@ echo $separationPhrase
 
 #게이트웨이 도커 파일 빌드
 cd $currentDir/$GATEWAY_IMAGE_NAME
+chmod +x gradlew
+./gradlew clean build -x test
 docker buildx build --no-cache -t $GATEWAY_IMAGE_NAME:$TAG .
 
 #게이트웨이 도커 파일 tar 저장
