@@ -43,7 +43,7 @@ cp -r -f ./$DEPLOY_NAME/release/frontend/* $currentDir/$FRONTEND_IMAGE_NAME/$FRO
 cp -r -f ./$DEPLOY_NAME/release/backend/* $currentDir
 
 echo
-echo "REMOTE SERVER STOP...."
+echo "REMOTE SERVER STOP AND CLEAN DOCKER BUILD CACHE...."
 echo 
 echo $separationPhrase
 
@@ -58,6 +58,7 @@ docker compose down
 docker image rmi newspace-backend:latest
 docker image rmi newspace-frontend:latest
 docker image prune -f
+docker builder prune -a -f
 echo
 docker images -a
 EOT
