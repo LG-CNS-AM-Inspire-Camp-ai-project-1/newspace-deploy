@@ -130,41 +130,41 @@ docker buildx build -t $BACKEND_IMAGE_NAME:$TAG .
 #백엔드 도커 파일 tar 저장
 docker save -o $currentDir/images/$BACKEND_IMAGE_NAME.tar $BACKEND_IMAGE_NAME:$TAG
 
-# #도커 허브에 업로드
-# echo $separationPhrase
-# echo
-# echo "Upload Image to DockerHub......"
-# echo 
-# echo $separationPhrase
+#도커 허브에 업로드
+echo $separationPhrase
+echo
+echo "Upload Image to DockerHub......"
+echo 
+echo $separationPhrase
 
 docker images
-# echo
-# echo "DOCKER_USER = $DOCKER_USER"
-# echo "DOCKER_PASS = $DOCKER_PASS"
-# echo
-# echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+echo
+echo "DOCKER_USER = $DOCKER_USER"
+echo "DOCKER_PASS = $DOCKER_PASS"
+echo
+echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-# #도커 허브에 업로드할 로컬용 이미지 생성
+#도커 허브에 업로드할 로컬용 이미지 생성
 
-# cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
-# docker buildx build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://localhost:8072/ -t "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG" .
-# cd $currentDir
-# docker tag "$BACKEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
-# docker tag "$EUREKA_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG"
-# docker tag "$GATEWAY_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG"
+cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
+docker buildx build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://localhost:8072/ -t "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG" .
+cd $currentDir
+docker tag "$BACKEND_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
+docker tag "$EUREKA_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG"
+docker tag "$GATEWAY_IMAGE_NAME:$TAG" "$DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG"
 
-# #도커 허브에 이미지 푸시
-# docker push "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
-# docker push "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
-# docker push "$DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG"
-# docker push "$DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG"
+#도커 허브에 이미지 푸시
+docker push "$DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG"
+docker push "$DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG"
+docker push "$DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG"
+docker push "$DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG"
 
-# #임시 이미지 제거
-# docker image rmi $DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG
-# docker image rmi $DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG
-# docker image rmi $DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG
-# docker image rmi $DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG
-# docker image prune -f
+#임시 이미지 제거
+docker image rmi $DOCKER_NICKNAME/$FRONTEND_IMAGE_NAME:$TAG
+docker image rmi $DOCKER_NICKNAME/$BACKEND_IMAGE_NAME:$TAG
+docker image rmi $DOCKER_NICKNAME/$EUREKA_IMAGE_NAME:$TAG
+docker image rmi $DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG
+docker image prune -f
 
 #마운트 시작
 echo $separationPhrase
