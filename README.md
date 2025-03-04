@@ -2,13 +2,9 @@
 <img src="https://github.com/user-attachments/assets/04d415b7-b379-4a0b-9aba-ff1d3609db85" width="300" />
 
 <br>
-
 newspace-deploy 입니다.
-
 <br>
-
 해당 레포지토리에는 CI/CD에 필요한 Dockerfile과 배포 스크립트가 포함되어있습니다. 
-
 <br>
 
 ## 📍 프로젝트 설명
@@ -82,7 +78,7 @@ LG CNS AM Inspire Camp
 
 ```
 .
-├── jenkins // 젠킨스 Dockerfile과 빌드 스크립트... 
+├── jenkins // 젠킨스
 │   ├── build.sh
 │   ├── deploy-cloud.sh // 유레카, API-GATEWAY 통합 배포 스크립트
 │   ├── deploy.sh // 모놀리식 배포 스크립트
@@ -91,10 +87,10 @@ LG CNS AM Inspire Camp
 │   ├── pipeline.sh
 │   ├── remove.sh
 │   └── run.sh
-├── local
+├── local // 로컬(Docker Desktop 용)
 │   └── docker-compose.yml
 ├── README.md
-├── release
+├── release // 모놀리식
 │   ├── backend
 │   │   ├── Dockerfile
 │   │   └── src
@@ -105,7 +101,7 @@ LG CNS AM Inspire Camp
 │   └── frontend // 프론트
 │       ├── Dockerfile
 │       └── nginx.conf
-└── release-cloud
+└── release-cloud // MSA
     ├── backend // 백엔드
     │   ├── Dockerfile
     │   └── src
