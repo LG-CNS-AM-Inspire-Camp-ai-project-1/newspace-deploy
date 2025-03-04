@@ -134,7 +134,7 @@ LG CNS AM Inspire Camp
 <br>
 frontend : https://github.com/newspaceProject/newspace-frontend
 <br>
-deploy : https://github.com/newspaceProject/newspace-deploy
+backend : https://github.com/newspaceProject/newspace-backend
 <br>
 Gateway : https://github.com/newspaceProject/newspace-gateway
 <br>
