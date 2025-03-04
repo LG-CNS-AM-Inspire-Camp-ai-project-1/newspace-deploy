@@ -10,8 +10,6 @@ newspace-deploy 입니다.
 ## 📽️ CI/CD 배포 시연 영상
 [https://youtu.be/yXdEaNA0_rc](https://youtu.be/yXdEaNA0_rc)
 
-<br/>
-
 ## 📍 프로젝트 설명
 25.02.21 ~ 25.02.26
 <br>
