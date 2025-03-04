@@ -77,6 +77,8 @@ LG CNS AM Inspire Camp
 ## 📽️ CI/CD 배포 자동화 시연 영상
 [https://youtu.be/yXdEaNA0_rc](https://youtu.be/yXdEaNA0_rc)
 
+<br/>
+
 ## 📂 폴더 구조
 
 ```
