@@ -184,7 +184,7 @@ echo "Copy Docker images to Remote Server...."
 echo 
 echo $separationPhrase
 
-#복사
+#tar 이미지 파일을 원격 서버로 복사
 echo
 cp -r -f $currentDir/images/*.tar $mountDir;
 echo "=> Successfully copied Docker images to Remote Server"
