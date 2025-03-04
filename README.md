@@ -7,6 +7,11 @@ newspace-deploy 입니다.
 해당 레포지토리에는 CI/CD에 필요한 Dockerfile과 배포 스크립트가 포함되어있습니다. 
 <br>
 
+## 📽️ CI/CD 배포 시연 영상
+[https://youtu.be/yXdEaNA0_rc](https://youtu.be/yXdEaNA0_rc)
+
+<br/>
+
 ## 📍 프로젝트 설명
 25.02.21 ~ 25.02.26
 <br>
@@ -71,11 +76,6 @@ LG CNS AM Inspire Camp
 ## 🛠️ 기술 스택
 
 <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"> <img src="https://img.shields.io/badge/Spring%20Security-6DB33F?style=for-the-badge&logo=SpringSecurity&logoColor=white"> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white"> <img src="https://img.shields.io/badge/Spring%20Cloud-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/Spring%20AI-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/Spring%20WebFlux-6DB33F?style=for-the-badge&logo=SpringWebFlux&logoColor=white"> <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=MariaDB&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> 
-
-<br/>
-
-## 📽️ CI/CD 배포 자동화 시연 영상
-[https://youtu.be/yXdEaNA0_rc](https://youtu.be/yXdEaNA0_rc)
 
 <br/>
 
