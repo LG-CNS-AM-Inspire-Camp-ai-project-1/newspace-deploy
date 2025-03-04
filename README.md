@@ -78,7 +78,7 @@ LG CNS AM Inspire Camp
 
 ```
 .
-├── jenkins // 젠킨스 Dockerfile과 빌드 스크립트... 
+├── jenkins // 젠킨스
 │   ├── build.sh
 │   ├── deploy-cloud.sh // 유레카, API-GATEWAY 통합 배포 스크립트
 │   ├── deploy.sh // 모놀리식 배포 스크립트
@@ -87,10 +87,10 @@ LG CNS AM Inspire Camp
 │   ├── pipeline.sh
 │   ├── remove.sh
 │   └── run.sh
-├── local
+├── local // 로컬(Docker Desktop 용)
 │   └── docker-compose.yml
 ├── README.md
-├── release
+├── release // 모놀리식
 │   ├── backend
 │   │   ├── Dockerfile
 │   │   └── src
@@ -101,7 +101,7 @@ LG CNS AM Inspire Camp
 │   └── frontend // 프론트
 │       ├── Dockerfile
 │       └── nginx.conf
-└── release-cloud
+└── release-cloud // MSA
     ├── backend // 백엔드
     │   ├── Dockerfile
     │   └── src
