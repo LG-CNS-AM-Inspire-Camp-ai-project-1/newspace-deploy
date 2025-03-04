@@ -7,6 +7,9 @@ newspace-deploy 입니다.
 해당 레포지토리에는 CI/CD에 필요한 Dockerfile과 배포 스크립트가 포함되어있습니다. 
 <br>
 
+## 📽️ CI/CD 배포 시연 영상
+[https://youtu.be/yXdEaNA0_rc](https://youtu.be/yXdEaNA0_rc)
+
 ## 📍 프로젝트 설명
 25.02.21 ~ 25.02.26
 <br>
