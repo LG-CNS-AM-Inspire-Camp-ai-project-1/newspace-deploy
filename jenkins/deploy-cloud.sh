@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-frontend
-# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-deploy
-
 currentDir=$(pwd -P);
 remoteID="lgcns"
 remoteIP="172.21.1.22"
@@ -130,7 +127,9 @@ docker buildx build -t $BACKEND_IMAGE_NAME:$TAG .
 #백엔드 도커 파일 tar 저장
 docker save -o $currentDir/images/$BACKEND_IMAGE_NAME.tar $BACKEND_IMAGE_NAME:$TAG
 
-# #도커 허브에 업로드 <= 필요할 시 주석 해제해서 사용할 것
+#도커 허브에 이미지 업로드 <= 필요할 시 주석 해제해서 사용할 것
+#도커 허브에 이미지 업로드는 빌드 시간에 영향을 끼칠수 있습니다!
+
 # echo $separationPhrase
 # echo
 # echo "Upload Image to DockerHub......"
@@ -166,7 +165,7 @@ docker save -o $currentDir/images/$BACKEND_IMAGE_NAME.tar $BACKEND_IMAGE_NAME:$T
 # docker image rmi $DOCKER_NICKNAME/$GATEWAY_IMAGE_NAME:$TAG
 # docker image prune -f
 
-#마운트 시작
+#원격서버와 마운트 시작
 echo $separationPhrase
 echo
 echo "Remote Server Mount...."
@@ -190,8 +189,6 @@ echo
 cp -r -f $currentDir/images/*.tar $mountDir;
 echo "=> Successfully copied Docker images to Remote Server"
 echo
-
-#touch $mountDir/hello.txt;
 
 echo $separationPhrase
 echo
