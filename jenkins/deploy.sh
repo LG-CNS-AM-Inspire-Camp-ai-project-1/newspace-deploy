@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-frontend
-# git clone https://${GIT_PASS}@github.com/LG-CNS-AM-Inspire-Camp-ai-project-1/newspace-deploy
-
 currentDir=$(pwd -P);
 remoteID="lgcns"
 remoteIP="172.21.1.22"

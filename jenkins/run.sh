@@ -20,6 +20,7 @@ if [ "$#" -eq 3 ]; then
 
 fi
 
+# 젠킨스 컨테이너에 ssh 로 접속하여 공개키를 발급받고 원격지 서버에 복사 (수동) 
 # docker exec -it jenkins /bin/bash
 # ssh-keygen -t rsa -b 4096
 # ssh-copy-id lgcns@172.21.1.22
