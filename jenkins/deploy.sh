@@ -72,7 +72,6 @@ cd $currentDir/$FRONTEND_IMAGE_NAME/$FRONTEND_IMAGE_NAME
 docker buildx build --no-cache --build-arg NEWSPACE_TEST_BACKEND_URL=http://kudong.kr:55021/ -t $FRONTEND_IMAGE_NAME:$TAG .
 
 #프론트 도커 파일 tar 저장
-
 docker save -o $currentDir/images/$FRONTEND_IMAGE_NAME.tar $FRONTEND_IMAGE_NAME:$TAG
 
 echo $separationPhrase
@@ -97,6 +96,7 @@ echo "Upload Image to DockerHub......"
 echo 
 echo $separationPhrase
 
+#도커 허브 로그인
 docker images
 echo
 echo "DOCKER_USER = $DOCKER_USER"
@@ -139,13 +139,11 @@ echo "Copy Docker images to Remote Server...."
 echo 
 echo $separationPhrase
 
-#복사
+#tar 이미지 파일을 원격 서버로 복사
 echo
 cp -r -f $currentDir/images/*.tar $mountDir;
 echo "=> Successfully copied Docker images to Remote Server"
 echo
-
-#touch $mountDir/hello.txt;
 
 echo $separationPhrase
 echo
